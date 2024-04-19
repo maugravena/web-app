@@ -1,0 +1,31 @@
+services:
+  web:
+    build: .
+    command: ./bin/rails s -b 0.0.0.0 -p 3333
+    container_name: web_app
+    volumes:
+      - .:/opt/app
+    ports:
+      - 3333:3333
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    depends_on:
+      web_db:
+        condition: service_healthy
+  web_db:
+    container_name: web_db
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - web_data:/var/lib/postgressql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+volumes:
+  web_data:
