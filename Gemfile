@@ -23,3 +23,8 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
+gem 'omniauth', '~> 2.1', '>= 2.1.1'
+gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
+gem "omniauth-rails_csrf_protection"
