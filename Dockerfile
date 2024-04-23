@@ -17,5 +17,5 @@ COPY . $INSTALL_PATH
 
 ENTRYPOINT ["./bin/docker-entrypoint"]
 
-EXPOSE 3333
+EXPOSE 3000
 CMD ["./bin/rails", "server"]
