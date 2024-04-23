@@ -24,7 +24,9 @@ group :development do
   # gem "spring"
 end
 
+gem 'devise', '~> 4.9', '>= 4.9.4'
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'omniauth', '~> 2.1', '>= 2.1.1'
+gem 'omniauth-cognito-idp', '~> 0.1.1'
 gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
-gem "omniauth-rails_csrf_protection"
+gem 'omniauth-rails_csrf_protection'
