@@ -8,7 +8,6 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     find_or_create_by!(email: auth.info.email, provider: auth.provider) do |user|
       user.uid = auth.uid
-      user.password = '1234567890'
     end
   end
 end
