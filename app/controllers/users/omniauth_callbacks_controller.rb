@@ -3,8 +3,6 @@ module Users
     skip_before_action :verify_authenticity_token, only: %i[google_oauth2 cognito_idp]
 
     def google_oauth2
-      Rails.logger.info(request.env['omniauth.auth'])
-
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
       if @user.persisted?
@@ -14,8 +12,6 @@ module Users
     end
 
     def cognito_idp
-      Rails.logger.info('@@@@@@@@@@@@@@@@@@ CHEGOU NO CONTROLLER @@@@@@@@@@@@@@')
-
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
       return unless @user.persisted?
