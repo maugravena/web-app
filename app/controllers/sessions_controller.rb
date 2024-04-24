@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def omniauth
-    @user = User.find_or_create_by(uid:, provider:) do |user|
-      user.email = email
+    @user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |user|
+      user.email = auth['info']['email']
     end
 
     redirect_to root_path if @user.valid?
@@ -10,7 +10,4 @@ class SessionsController < ApplicationController
   private
 
   def auth = request.env['omniauth.auth']
-  def uid = auth['uid']
-  def provider = auth['provider']
-  def email = auth['info']['email']
 end
