@@ -8,16 +8,22 @@ module Users
       if @user.persisted?
         redirect_to root_path
         set_flash_message(:notice, :success, kind: 'Google')
+      else
+        redirect_to new_user_session_url
+        set_flash_message(:notice, :failure, kind: 'Google', reason: 'login')
       end
     end
 
     def cognito_idp
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
-      return unless @user.persisted?
-
-      redirect_to root_path
-      set_flash_message(:notice, :success, kind: 'Cognito')
+      if @user.persisted?
+        redirect_to root_path
+        set_flash_message(:notice, :success, kind: 'Cognito')
+      else
+        redirect_to new_user_session_url
+        set_flash_message(:notice, :failure, kind: 'Cognito', reason: 'login')
+      end
     end
   end
 end
