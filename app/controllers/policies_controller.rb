@@ -1,7 +1,5 @@
 class PoliciesController < ApplicationController
   def index
-    encoded_token = JWT.encode({}, ENV['SECRET_KEY'], 'HS256')
-
     url = URI.parse('http://rails-graphql:9999/graphql')
     http = Net::HTTP.new(url.host, url.port)
     request = Net::HTTP::Post.new(url.request_uri)
@@ -14,6 +12,8 @@ class PoliciesController < ApplicationController
   end
 
   private
+
+  def encoded_token = JWT.encode({}, ENV['SECRET_KEY'], 'HS256')
 
   def graphql_query
     <<-GRAPHQL
