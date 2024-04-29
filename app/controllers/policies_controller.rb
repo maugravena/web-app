@@ -1,17 +1,26 @@
 class PoliciesController < ApplicationController
   def index
-    url = URI.parse('http://rails-graphql:9999/graphql')
-    http = Net::HTTP.new(url.host, url.port)
-    request = Net::HTTP::Post.new(url.request_uri)
-    request.body = { query: graphql_query }.to_json
-    request['Authorization'] = encoded_token
-    request['Content-Type'] = 'application/json'
-    response = http.request(request)
-
-    @policies = JSON.parse(response.body)['data']['policies']
+    @policies = JSON.parse(build_request.body)['data']['policies']
   end
 
   private
+
+  def build_request
+    url = URI.parse('http://rails-graphql:9999/graphql')
+    http = Net::HTTP.new(url.host, url.port)
+
+    request = Net::HTTP::Post.new(url.request_uri, build_headers)
+    request.body = { query: graphql_query }.to_json
+
+    http.request(request)
+  end
+
+  def build_headers
+    {
+      'Authorization' => "Bearer #{encoded_token}",
+      'Content-Type' => 'application/json'
+    }
+  end
 
   def encoded_token = JWT.encode({}, ENV['SECRET_KEY'], 'HS256')
 
