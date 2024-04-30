@@ -1,2 +1,8 @@
 <h1>Lista de polices</h1>
 
+<ul>
+  <% @policies.each do |police| %>
+    <li><%= police['policyId'] %></li>
+  <% end %>
+</ul>
+
