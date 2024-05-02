@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <% if flash[:success] %>
+      <div>
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
