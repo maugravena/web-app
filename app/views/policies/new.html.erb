@@ -1,0 +1,52 @@
+<%= form_with url: policies_path, method: :post do |form|%>
+  <div>
+    <h2>Insured</h2>
+    <div>
+      <%= form.label :insured_cpf, 'CPF' %>
+      <%= form.text_field :insured_cpf %>
+    </div>
+
+    <div>
+      <%= form.label :insured_name, 'Name' %>
+      <%= form.text_field :insured_name %>
+    </div>
+  </div>
+
+  <div>
+    <h2>Policy</h2>
+    <div>
+      <%= form.label :emission_date, 'Emission date' %>
+      <%= form.date_field :emission_date %>
+    </div>
+
+    <div>
+      <%= form.label :end_date_coverage, 'End date coverage' %>
+      <%= form.date_field :end_date_coverage %>
+    </div>
+  </div>
+
+  <div>
+    <h2>Vehicle</h2>
+    <div>
+      <%= form.label :vehicle_brand, 'Brand' %>
+      <%= form.text_field :vehicle_brand %>
+    </div>
+
+    <div>
+      <%= form.label :vehicle_model, 'Model' %>
+      <%= form.text_field :vehicle_model %>
+    </div>
+
+    <div>
+      <%= form.label :vehicle_year, 'Year' %>
+      <%= form.text_field :vehicle_year %>
+    </div>
+
+    <div>
+      <%= form.label :vehicle_licence_plate, 'License plate' %>
+      <%= form.text_field :vehicle_licence_plate %>
+    </div>
+  </div>
+
+  <%= form.submit 'Create' %>
+<% end %>
